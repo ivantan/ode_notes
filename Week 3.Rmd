@@ -1,0 +1,9 @@
+---
+title: "Modelling FO and Autonomous"
+output: html_document
+---
+
+1. A tank contains 100 gallons of water and 50 oz of salt. Water containing a salt concentration of $\displaystyle \frac{1}{4} \left( 1+\frac{1}{2}sint \right)$ oz/gal flows into the tank at a rate of 2 gal/min, and the mixture in the tank flows out at the same rate.  
+* Find the amount of salt in the tank at any time
+* Plot the solution for a time period long enough so that you see the ultimate behaviour of the graph.
+* The long-time behaviour of the solution is an oscillation about a certain constant level. What is this level? What is the amplitude of the oscillation?
