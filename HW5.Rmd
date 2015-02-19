@@ -1,0 +1,237 @@
+---
+output: html_document
+---
+### Homework 5
+* __Q3.1.8__ Find the general solution to $y'' - 2y' - 2y = 0$  
+    
+    Using the characteristic equation we have:
+$$
+\begin{array}{l l}
+& r^2 - 2r - 2 = 0
+\\
+\Rightarrow & r = \displaystyle \frac{2 \pm \sqrt{2^2 - 4(1)(-2)} }{2(1)}
+\\
+\Rightarrow & r = 1 \pm \sqrt{3}
+\end{array}
+$$  
+Answer:  
+$$
+y = c_1 e^{(1+\sqrt{3})t} + c_2 e^{(1-\sqrt{3})t} .
+$$  
+  
+* __Q3.1.18__ Find the DE whose general solution is $y = c_1 e^{-\frac{t}{2}}+ c_2 e^{-2t}$  
+    
+    Working from the characteristic equation
+$$
+ar^2 + br + c = 0 \Leftrightarrow ay'' + by' + cy = 0
+$$
+With roots $r_1 = -\frac{1}{2}$ and $r_2 = -2$, we get
+$$
+\begin{array}{l l}
+& (r + \frac{1}{2})(r + 2) = 0
+\\
+= & r^2 + \frac{5}{2}r + 1 = 0
+\end{array}
+$$
+Answer:
+$$
+y'' + \frac{5}{2}y' + y = 0.
+$$  
+  
+* __Q3.1.23__ Find the values of $\alpha$ for which all solutions to the equation tend to zero, as $t \rightarrow \infty$; and also when the solutions become unbounded.  
+$$
+y'' - (2\alpha -1)y' + \alpha(\alpha - 1)y = 0.
+$$  
+    
+    Using the characteristic equation:
+$$
+\begin{array}{l l}
+& r^2 - (2\alpha -1)r + \alpha(\alpha - 1) = 0
+\\
+\Leftrightarrow & r^2 - 2\alpha r + r + \alpha^2 - \alpha = 0
+\\
+\Leftrightarrow & (r - (\alpha - 1))(r - \alpha) = 0
+\end{array}
+$$
+Thus, we have roots of the equation at $\alpha$ and $\alpha - 1$.  
+  For the solution to tend to zero as $t \rightarrow \infty$, $\alpha$ must be negative (exponential power of negative number times t); solutions will become unbounded when $\alpha$ is postive.  
+  
+* __Q3.1.25__ Consider the IVP, $2y'' + 3y' - 2y = 0, y(0) = 1, y'(0) = -\beta, \beta > 0.$  
+* __(a)__ Solve the IVP. We use the characteristic equation
+$$
+\begin{array}{l l}
+& 2r^2 + 3r - 2 = 0
+\\
+\Leftrightarrow & (2r - 1)(r + 2) = 0
+\\
+\Leftrightarrow & y = c_1 e^{-2t} + c_2 e^{\frac{1}{2}t}
+\end{array}
+$$  
+Thus the roots are at $r = -2, \frac{1}{2}$. Next we solve the general solution with the initial conditions  
+$$
+\begin{array}{l l l}
+y(0) & = 1 & = c_1 + c_2
+\\
+y'(0) & = -\beta & = -2c_1 + \frac{1}{2}c_2
+\end{array}
+$$
+Solving for $c_1$ and $c_2$  
+$$
+\begin{array}{l l l l}
+c_1 & = \displaystyle \frac{\left| \begin{matrix} 1 & 1 \\ -\beta & \frac{1}{2} \end{matrix} \right|}
+{\left| \begin{matrix} 1 & 1 \\ -2 & \frac{1}{2} \end{matrix} \right|}, 
+& c_2 & = \displaystyle \frac{\left| \begin{matrix} 1 & 1 \\ -2 & -\beta \end{matrix} \right|}
+{\left| \begin{matrix} 1 & 1 \\ -2 & \frac{1}{2} \end{matrix} \right|},
+\\
+& = \displaystyle \frac{\frac{1}{2} + \beta}{\frac{1}{2} + 2}, & & = \displaystyle \frac{-\beta + 2}{\frac{1}{2} + 2},
+\\
+& = \displaystyle \frac{1}{5} + \frac{2}{5}\beta. & & = \displaystyle \frac{4}{5} - \frac{2}{5}\beta.
+\end{array}
+$$
+Answer:  
+$$
+y = \frac{1}{5} (1+2\beta) e^{-2t} + \frac{1}{5} (4-2\beta) e^{\frac{1}{2}t}
+$$
+* __(b)__ Plot the solution when $\beta$ = 1.
+When $\beta$ = 1,
+$$
+y = \frac{3}{5} e^{-2t} + \frac{2}{5} e^{\frac{1}{2}t}
+$$  
+  
+```{r, echo=FALSE}
+t = seq(from = -2, to = 10, by = 0.1)
+y = 3/5 * exp(-2*t) + 2/5 * exp(t/2)
+plot(t, y, type = "l", main = "plot of y = (3/5)*exp(-2*t) + (2/5)*exp(t/2)")
+```  
+
+* To find the minimum point, we differentiate
+$$
+y' = \frac{-6}{5}e^{-2t} + \frac{1}{5}e^{\frac{1}{2}t}
+$$  
+Setting it to zero
+$$
+\begin{array}{l l}
+0 & = \frac{-6}{5}e^{-2t} + \frac{1}{5}e^{\frac{1}{2}t}
+\\
+6 & = e^{\frac{1}{2}t} e^{2t}
+\\
+\ln(6) & = \frac{5}{2}t
+\\
+t & = \frac{2}{5} \ln(6)
+\\
+& \approx 0.7167038
+\end{array}
+$$
+Substitute $t = \frac{2}{5} \ln(6)$, the value of y at $(\beta = 1)$ is
+$$
+\begin{array}{l l}
+y & = \frac{3}{5} e^{-2(\frac{2}{5} \ln(6))} + \frac{2}{5} e^{\frac{1}{2}(\frac{2}{5} \ln(6))}
+\\
+y & = \frac{3}{5} 6^{\frac{-4}{5}} + \frac{2}{5} 6^{\frac{1}{5}}
+\\
+& \approx 0.7154845
+\end{array}
+$$  
+  
+* __(c)__ Find the smallest value of $\beta$ for which the solution has no minimum point.  
+We try to find the values at which one of the exponential terms disappear. Then there will be no minimum point. This is a $\beta = \frac{-1}{2}$, $2$. Since $\beta$ is defined at $> 0$, the smallest value of $\beta$ for which the solution has no minmum point is $2$.
+
+* __Q3.2.8__ Determine the longest interval the IVP is certain to have a unique twice differentiable solution
+$$
+\begin{array}{l}
+(t-1)y'' - 3ty' + 4y = \sin(t),
+\\
+y(-2) = 2,
+\\
+y'(-2) = 1.
+\end{array}
+$$  
+Rewrite the equation as
+$$
+y'' - \frac{3t}{t-1}y' + \frac{4}{t-1}y = \frac{\sin(t)}{t-1}
+$$
+The differentiable equation is continuous in $(-\infty,1) \cup (1,\infty)$. Since the initial condition is at $t = -2$ is in $(-\infty,1)$, the unique twice differentiable solution for the interval $(-\infty < t < 1).$
+
+* __Q3.2.16__ Can $y = \sin(t^2)$ be a solution on an interval containing $t = 0$ of an equation $y'' + p(t)y' + q(t)y = 0$ with continuous coefficients?  
+hello
+$$
+\begin{array}{l l}
+y &= \sin(t^2)
+\\
+y' &= 2t \cos(t^2)
+\\
+y'' &= \cos(t^2) 2 + 2t (-\sin(t^2))(2t)
+\\
+&= 2\cos(t^2) + 4t^2(-\sin(t^2))
+\end{array}  
+$$  
+Substituting into the DE  
+$$
+\begin{array}{l l}
+& y'' + p(t)y' + q(t)y = 0
+\\
+\Leftrightarrow & 2\cos(t^2) + 4t^2(-\sin(t^2)) + p(t)2t\cos(t^2) + q(t)\sin(t^2) = 0
+\end{array}  
+$$      
+When $t = 0$
+$$
+2 = 0  
+$$      
+So $y = \sin(t^2)$ does not satisfy the DE at $t = 0$.
+
+* __Q3.2.25__ Verify $y_{1,2}$ are the solutions to the DE  
+$$
+x^2y'' - x(x+2)y' + (x+2)y = 0, x > 0; y_1(x) = x, y_2(x) = xe^x
+$$  
+    
+    Differentiating and substituting into the DE 
+$$
+\begin{array}{l l l l}
+y_1(x) &= x, & y_2(x) &= xe^x,
+\\
+y_1'(x) &= 1, & y_2'(x) &= xe^x + e^x,
+\\
+y_1''(x) &= 0. & y_2''(x) &= xe^x + 2e^x.
+\end{array}
+$$
+$$
+(x^2)(0) - (x)(x+2)(1) + (x+2)(x) = 0
+$$  
+    
+    Thus, the solutions satisfy the DE.  
+    
+    Use the Wronskian to check the solutions constitute a fundamental set of solutions  
+$$
+\begin{array}{l l}
+W(y_1, y_2) &= y_1y_2' - y_2y_1'
+\\
+&= x(xe^x + e^x) - xe^x(1)
+\\
+&= x^2e^x + xe^x - xe^x
+\\
+&= x^2e^x \neq 0 \textit{ since $x>0$}
+\end{array}
+$$  
+    
+    $y_{1,2}$ found a fundamental set of solution since the Wronskian is not equal to zero.
+
+* __Q3.3.5__ Determine whether the given pair of functions is linearly independent or linearly dependent  
+$$
+f(t) = 3t - 5, g(t) = 9t - 15.  
+$$  
+$$
+W(f, g) = (3t - 5)(9) - (3)(9t - 15) = 0  
+$$  
+Thus the functions are linearly dependent.  
+
+* __Q3.3.13__ If $y_{1,2}$ are linearly independent solutions of $y'' + py' + qy = 0$, under what conditions the function $y_3 = a_1y_1 + a_2y_2$ and $y_4 = b_1y_1 + b_2y_2$ also form a linearly independent set of solutions.  
+hello  
+Since $y_{1,2}$ are linearly independent solutions of the equation, and so it $y_3,4$, $W(y_1, y_2)$ and $W(y_3, y_4)$ must be not equal to zero.  
+$$
+\left[ \begin{matrix} y_3 & y_4 \\ y_3' & y_4' \end{matrix} \right] = \left[ \begin{matrix} y_1 & y_2 \\ y_1' & y_2' \end{matrix} \right] \left[ \begin{matrix} a_1 & b_1 \\ a_2 & b_2 \end{matrix} \right]  
+$$  
+Hence, $W(y_3, y_4) \neq 0$ only when $a_1b_2 - a_2b_1 \neq 0$ because $W(y_1, y_2) \neq 0.$
+
+* __Q3.3.25__ Prove that if $y_{1,2}$ have maxima or minima at the same point in I, then they cannot be a fundamental set of solutions on that interval.  
+Since $y_{1,2}$ have a maxima or minima, at $t_0$, $y_1'(t_0) = y_2'(t_0) = 0$. Then $y_1y_2' - y_2y_1' = 0$. By Abel's Theorem, $W(y_1, y_2)$ is zero for all t in I, that is, they are linearly dependent and cannot be a fundamental set of solutions.
+
